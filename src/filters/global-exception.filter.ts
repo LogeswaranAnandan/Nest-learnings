@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 @Catch(HttpException)
 export class GlobalExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
-    console.log('INISIDE ===> HTTP EXCEPTION HANDLER');
+    console.log('INISIDE :: HTTP EXCEPTION HANDLER');
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
@@ -23,7 +23,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 @Catch()
 export class GlobalGenericExceptionFilter implements ExceptionFilter {
   catch(exception: Error, host: ArgumentsHost) {
-    console.log('INISIDE ===> GENERIC HANDLER');
+    console.log('INISIDE :: GENERIC HANDLER');
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
