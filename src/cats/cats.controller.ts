@@ -1,7 +1,7 @@
 
 import { Controller, Get, Query, Post, Body, Put, Param, Delete, HttpException, HttpStatus } from '@nestjs/common';
 import { CatsService } from './cats.service';
-import { Cat } from 'src/interface/cat';
+import { Cat } from 'src/models/cat';
 
 @Controller('cats')
 export class CatsController {
@@ -10,20 +10,20 @@ export class CatsController {
 
   @Post()
   create(@Body() createCatDto: Cat): Cat {
-    return this.catsService.create(createCatDto);
+    console.log('Entering :: Controller');
+    const cat: Cat= this.catsService.create(createCatDto);
+    console.log('Exiting :: Controller');
+    return cat;
   }
 
   @Get()
-  findAll(@Query() query: any): Cat[] {
-    // return this.catsService.findAll();
-    throw new HttpException('test', HttpStatus.BAD_REQUEST);
+  findAll(): Cat[] {
+    return this.catsService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    // return `This action returns a #${id} cat`;
-    // throw new Error('test error');
-    throw new HttpException('ad', HttpStatus.CONFLICT);
+    return `This action returns a #${id} cat`;
   }
 
   @Put(':id')
